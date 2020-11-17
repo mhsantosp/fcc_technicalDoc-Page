@@ -1,22 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
+    <link rel="icon" href="https://es.vuejs.org/images/logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+
     <title>Build a Technical Documentation Page</title>
   </head>
+
   <body>
-    <header></header>
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="navbar" class="navbar col-md-3 col-xl-3 py-4">
+          <div class="container-fluid">
+            <header class="h5 text-center mb-3">
+              <a href="https://es.vuejs.org/" target="_blank">
+                <img src="https://es.vuejs.org/images/logo.png" width="40" height="40" alt="logo vue.js"> Descripción VUE.js
+              </a>
+            </header>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link h5" href="#introducion">Introducción</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h5" href="#renderizacion_declarativa">Renderización Declarativa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h5" href="#composicion_con_componentes">Composición con Componentes</a>
+              </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h5" href="#la_instancia_vue">La instancia Vue</a>
+              </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h5" href="#diagrama_del_ciclo_de_vida">Diagrama del Ciclo de vida</a>
+              </li>
+            </ul>
+            <br><br>
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Información tomada de:</p>
+              <footer class="blockquote-footer">El Framework <cite title="Source Title">JavaScript Progresivo</cite> <a href="https://es.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer">vuejs.org</a></footer>
+            </blockquote>
+          </div>
+        </nav>
 
-    <main></main>
+        <main id="main-doc" class="col-md-9 col-xl-9 mt-4 mb-5">
+          <div class="container">
+            <section class="main-section mt-1 mb-3" id="introducion">
+              <header class="h2 text-center">Introducción</header>
+              <h4>Qué es Vue.js?</h4>
+              <p>
+                Vue (pronunciado /vjuː/, como view) es un framework progresivo para construir interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser utilizado incrementalmente. La librería central está enfocada solo
+                en la capa de visualización, y es fácil de utilizar e integrar con otras librerías o proyectos existentes. Por otro lado, Vue también es perfectamente capaz de impulsar sofisticadas Single-Page Applications cuando se utiliza en combinación
+                con <a href="https://es.vuejs.org/v2/guide/single-file-components.html">herramientas modernas</a> y <a href="https://github.com/vuejs/awesome-vue#components--libraries">librerías de apoyo</a>.</p>
 
-    <footer></footer>
+              <p>Si usted es un desarrollador frontend experimentado y desea saber cómo Vue se compara con otras librerías/frameworks, consulte la <a href="https://es.vuejs.org/v2/guide/comparison.html">Comparación con Otros frameworks</a>.</p>
 
-    <!-- jQuery, Popper.js, and Bootstrap JS -->
+              <p class="h3">Empezando</p>
+
+              <p>
+                La forma más fácil de probar Vue.js es usando <a href="https://jsfiddle.net/chrisvfritz/50wL7mdz/">el ejemplo Hola Mundo en JSFiddle</a>. Siéntase libre de abrirlo en otra pestaña y seguirlo mientras analizamos algunos ejemplos básicos.
+                O puede <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html">crear un archivo</a> <strong class="recomend">index.html</strong> e incluir Vue con:
+              </p>
+
+              <ul class="code">
+                <span><u><em>HTML</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="comment">&lt;!-- versión de desarrollo, incluye advertencias de ayuda en la consola --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre>
+                  </code>
+                </li>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="comment">&lt;!-- versión de producción, optimizada para tamaño y velocidad --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre>
+                  </code>
+                </li>
+              </ul>
+
+              <p>La <a href="https://es.vuejs.org/v2/guide/installation.html">página de instalación</a> proporciona más opciones de instalación de Vue. <strong>Nota:</strong> <b>No recomendamos</b> que los principiantes comiencen con <strong class="recomend">vue-cli</strong>,
+                especialmente si aún no están familiarizados con las herramientas de build basadas en Node.js.</p>
+            </section>
+
+            <section class="main-section my-3" id="renderizacion_declarativa">
+              <header class="h4">Renderización Declarativa</header>
+              <p>En el núcleo de Vue.js se encuentra un sistema que nos permite procesar datos de forma declarativa al DOM mediante una sintaxis de plantilla sencilla:</p>
+
+              <ul class="code">
+                <span><u><em>HTML</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  {{ message }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre>
+                  </code>
+                </li>
+                <span><u><em>JS</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: {</span><br><span class="line">    message: <span class="string">'Hola Vue!'</span></span><br><span class="line">  }</span><br><span class="line">})</span><br></pre>
+                  </code>
+                </li>
+                <span><u><em>Resultado</em></u></span>
+                <li>
+                  <p class="resultado">Hola Vue!</p>
+                </li>
+              </ul>
+
+              <p>¡Ya hemos creado nuestra primera aplicación Vue! Esto parece bastante similar a la representación de un template string, pero Vue ha hecho mucho trabajo por debajo. Los datos y el DOM ahora están vinculados, y todo ahora es <b>reactivo</b>.
+                ¿Cómo sabemos? Abra la consola de JavaScript de su navegador (ahora mismo, en esta página) y cambie el valor de <strong class="recomend">app.message</strong> a un valor diferente. Debería ver que el ejemplo se ha renderizado con el nuevo
+                valor que acaba de ingresar.</p>
+            </section>
+
+            <section class="main-section my-3" id="composicion_con_componentes">
+              <header class="h4">Composición con Componentes</header>
+              <p>El sistema de componentes es otro concepto importante en Vue, porque es una abstracción que nos permite crear aplicaciones a gran escala compuestas de componentes pequeños, independientes y, a menudo, reutilizables. Si lo pensamos, casi
+                cualquier tipo de interfaz de aplicación se puede abstraer en un árbol de componentes:</p>
+              <p class="grafico">
+                <img src="./images/components.png" alt="Árbol de componentes">
+              </p>
+              <p>En Vue, un componente es esencialmente una instancia de Vue con opciones predefinidas. Registrar un componente en Vue es sencillo:</p>
+
+              <ul class="code">
+                <span><u><em>JS</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="comment">// Define un nuevo componente llamado todo-item</span></span><br><span class="line">Vue.component(<span class="string">'todo-item'</span>, {</span><br><span class="line">  template: <span class="string">'&lt;li&gt;Esta es una tarea.&lt;/li&gt;'</span></span><br><span class="line">})</span><br></pre>
+                  </code>
+                </li>
+                <p>Ahora puedes incluirlo en el template de otro componente:</p>
+                <span><u><em>JS</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Crea una instancia del componente todo-item --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">todo-item</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre>
+                  </code>
+                </li>
+              </ul>
+
+              <p>Pero esto supondría tener el mismo texto para cada tarea, que no es muy interesante. Es posible que se pueda pasar datos de un scope o contexto padre a uno secundario en los componentes hijos. Para más información <a href="https://es.vuejs.org/v2/guide/#Composicion-con-Componentes"
+                  target="_blank" rel="noopener noreferrer">aquí</a>.</p>
+            </section>
+
+            <section class="main-section my-3" id="la_instancia_vue">
+              <header class="h2 text-center">La instancia Vue</header>
+              <h4>Creando una instancia de Vue</h4>
+              <p>Cada aplicación de Vue se comienza creando una nueva <b>Instancia de Vue</b> con la función <strong class="recomend">Vue</strong>:</p>
+
+              <ul class="code">
+                <span><u><em>JS</em></u></span>
+                <li>
+                  <code>
+                    <pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue({</span><br><span class="line">  <span class="comment">// opciones</span></span><br><span class="line">})</span><br></pre>
+                  </code>
+                </li>
+              </ul>
+
+              <p>Aunque no estrictamente asociado con el <a href="https://en.wikipedia.org/wiki/Model_View_ViewModel" target="_blank" rel="noopener noreferrer">patrón MVVM</a>, el diseño de Vue fue en parte inspirado por él.</p>
+              <p>Como una convención, solemos usar la variable <strong class="recomend">vm</strong> (abreviación de ViewModel) para hacer referencia a nuestra instancia de Vue.</p>
+              <p>Cuando usted crea una instancia de Vue, le pasa un <b>objeto options</b>. La mayor parte de esta guía describe cómo usted puede usar estas opciones para crear el comportamiento deseado.</p>
+              <p>Como referencia, usted puede visitar también la lista completa de opciones en la <a href="https://es.vuejs.org/v2/api/#Options-Data" target="_blank" rel="noopener noreferrer">documentación de la API</a>.</p>
+
+              <p>Una aplicación Vue está conformada por una <b>instancia Vue raíz</b> creada con <strong class="recomend">new Vue</strong>, opcionalmente organizada dentro de un árbol de componentes reusables anidados. Por ejemplo, el árbol de una aplicación
+                TO-DO podría verse así:</p>
+              <ul class="code">
+                <li>
+                  <code>
+                      <pre><span class="line">Root Instance</span><br><span class="line">└─ TodoList</span><br><span class="line">   ├─ TodoItem</span><br><span class="line">   │  ├─ DeleteTodoButton</span><br><span class="line">   │  └─ EditTodoButton</span><br><span class="line">   └─ TodoListFooter</span><br><span class="line">      ├─ ClearTodosButton</span><br><span class="line">      └─ TodoListStatistics</span><br></pre>
+                    </code>
+                </li>
+              </ul>
+              <p>Hablaremos sobre <b>el sistema de componentes</b> en detalle después. Por ahora, solo es necesario saber que todos los componentes de Vue son también instancias de Vue, por lo tanto aceptan el mismo objeto options (excepto para unas pocas
+                específicas opciones de raíz).</p>
+            </section>
+
+            <section class="main-section my-3" id="diagrama_del_ciclo_de_vida">
+              <header class="h4">Diagrama del Ciclo de vida</header>
+
+              <p>La imagen de abajo es un diagrama para el ciclo de vida de una instancia. No es necesario que entienda como funciona todo en este momento, pero a medida que aprenda y construya más, será una referencia útil.</p>
+
+              <p class="grafico">
+                <img src="./images/lifecycle.png" alt="Árbol de componentes">
+              </p>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   </body>
+
 </html>
